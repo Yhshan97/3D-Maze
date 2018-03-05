@@ -1,0 +1,31 @@
+/* to remove the top and left whitespace */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* just to be sure these are full screen*/
+html, body {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+}
+
+/* To remove the scrollbars */
+canvas {
+  display: block;
+}
+
+#tabHUD {
+  bottom: 1%;
+  position: absolute;
+  font-size: 45pt;
+  color: white;
+  border-color: black;
+  border-collapse: collapse;
+  user-select: none;
+  -ms-user-select: none;
+  pointer-events: none;
+  font-family: Ampera, black_diamonds, Old English Text MT;
+}

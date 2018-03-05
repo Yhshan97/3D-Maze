@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'Ampera';
+  src: url('Ampera.eot');
+  src: url('Ampera.woff2') format('woff2'),
+       url('Ampera.woff') format('woff'),
+       url('Ampera.ttf') format('truetype'),
+       url('Ampera.svg#Ampera') format('svg'),
+       url('Ampera.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}

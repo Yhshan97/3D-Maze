@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<head>
+  <title> Thesaurus - Ariel Sashcov, Mohamed Cherifi, Yao Hua Shan</title>
+
+  <link rel="stylesheet" type="text/css" href="Css/Style1.css">
+  <link rel="stylesheet" type="text/css" href="fonts/font.css">
+
+  <script type="text/javascript" src="javascript/WebGL.js"></script>
+  <script type="text/javascript" src="javascript/ShaderCouleursTextures.js"></script>
+  <script type="text/javascript" src="javascript/glMatrix-0.9.5.min.js"></script>
+  <script type="text/javascript" src="javascript/Transformations.js"></script>
+  <script type="text/javascript" src="javascript/Camera.js"></script>
+  <script type="text/javascript" src="javascript/Textures.js"></script>
+
+  <script type="text/javascript" src="javascript/Sol.js"></script>
+  <script type="text/javascript" src="javascript/Ciel.js"></script>
+  <script type="text/javascript" src="javascript/Murs.js"></script>
+  <script type="text/javascript" src="javascript/Tresor.js"></script>
+  <script type="text/javascript" src="javascript/Fleche.js"></script>
+  <script type="text/javascript" src="javascript/Porte.js"></script>
+  <script type="text/javascript" src="javascript/Teleporteur.js"></script>
+  <script type="text/javascript" src="javascript/Telerecepteur.js"></script>
+
+  <script type="text/javascript" src="javascript/Listener.js"></script>
+  <script type="text/javascript" src="javascript/Verifications.js"></script>
+  <script type="text/javascript" src="javascript/Misc.js"></script>
+  <script type="text/javascript" src="javascript/Animations.js"></script>
+  <script type="text/javascript" src="javascript/Inits.js"></script>
+  <script type="text/javascript" src="javascript/Timer.js"></script>
+  <script type="text/javascript" src="javascript/Variables.js"></script>
+  <script type="text/javascript">
+
+    function load() {
+      tabHUD = document.getElementById('tabHUD');
+
+      // Loading and setting up shovel image
+      for (var i = 0; i < nbOuvreursDuJoueur; i++) {
+        imgShovel = document.createElement("IMG");
+        imgShovel.setAttribute("id", "shovel" + i);
+        imgShovel.setAttribute("src", "images/shovel-icon.png");
+        imgShovel.setAttribute("width", "85");
+        imgShovel.setAttribute("height", "85");
+        imgShovel.setAttribute("alt", "shovel" + i);
+
+        tabObjShovel.push(imgShovel);
+
+        tabHUD.rows[0].cells[1].appendChild(tabObjShovel[i]);
+      }
+
+      // Loading and setting up level image
+      for (var i = 0; i < 10; i++) {
+        imgLevel = document.createElement("IMG");
+        imgLevel.setAttribute("src", "images/level/Level_" + (i+1) + "_icon.png");
+        imgLevel.setAttribute("width", "85");
+        imgLevel.setAttribute("height", "85");
+        imgLevel.setAttribute("alt", "level" + i + 1);
+
+        tabImageLevel.push(imgLevel);
+      }
+
+      // Waiting for images to load before loading the game
+      for (var x = 0; x < tabImages.length; x++) {
+        tabLoadedImages.push(new Image());
+        tabLoadedImages[x].onload = function() {
+          countImagesLoaded++;
+          if (countImagesLoaded === tabImages.length) {
+            demarrer();
+          }
+        }
+        tabLoadedImages[x].src = tabImages[x];
+      }
+    }
+
+    function demarrer() {
+      initTabPositionsMurs();
+      mettreLesObjetsDansLeTableau(nbTresor, nbFleches, nbTeleporteurs, nbTelerecepteurs)
+      initTimer();
+      initializeListeners();
+
+      var objCanvas = document.getElementById('monCanvas');
+      objgl = initWebGL(objCanvas); // Initialise le contexte WebGL
+      objProgShaders = initShaders(objgl);
+      objScene3D = initScene3D(); // Créer la scène
+
+      objCanvas.focus();
+
+      effacerCanevas(objgl);
+      dessiner(objgl, objProgShaders, objScene3D);
+      animer();
+    }
+  </script>
+</head>
+
+<body onload="load()">
+  <canvas id="monCanvas" width="1000" height="800" tabIndex="1" position="relative">
+        Votre navigateur ne supporte pas la balise canvas
+    </canvas>
+  <div>
+    <table id="tabHUD">
+      <tr>
+        <td align="center" width="35%"><span id="score">Score: 000000</span></td>
+        <td align="center" width="25%" height="50px"></td>
+        <td align="center" width="25%"><img src="images/timer-icon.png" style="width:50px;height:50px;"> <span id="time" >00:00</span></td>
+        <td align="left" width="15%"></td>
+      </tr>
+    </table>
+  </div>
+
+</body>
+
+</html>
