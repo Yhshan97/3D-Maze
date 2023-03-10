@@ -28,3 +28,11 @@ Open Maze.htm to start playing
 ##### Cheats #####
 
 * While in aerial view, __(Ctrl+Shift+Space)__ to see all hidden 
+
+##### Screenshots #####
+
+![image](https://user-images.githubusercontent.com/22126106/224412907-144172b3-2918-4594-8c33-987d6ff74543.png)
+![image](https://user-images.githubusercontent.com/22126106/224413016-8662119d-5b4e-49e0-b403-31f11630ff5a.png)
+![image](https://user-images.githubusercontent.com/22126106/224413122-03196a90-3a2d-4fe3-883c-82ad0b023851.png)
+
+
